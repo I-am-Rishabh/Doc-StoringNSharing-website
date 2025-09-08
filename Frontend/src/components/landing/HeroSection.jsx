@@ -1,4 +1,9 @@
-const HeroSection =() =>{
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useClerk } from "@clerk/clerk-react";
+import { useUser } from "@clerk/clerk-react";
+
+const HeroSection =({openSignIn,openSignUp}) =>{
  return(
     <div className="landing-page-content relative">
         <div className="absolute insert-0 bg-gradient-10-r from-blue-50 to-indigo-50 opacity-80 z-0 pointer-events-none"> </div>
@@ -15,10 +20,10 @@ const HeroSection =() =>{
                         </p>
                        <div className="mt-10 max-w-ms mx-auto sm:max-w-none sm:flex sm:justify-center">
                         <div className="space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid sm:grid-cols-2 gap-5">
-                            <button className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 sm:px-8 ">
+                            <button onClick={()=>openSignUp()} className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 sm:px-8 ">
                                 Get Stared
                             </button>
-                            <button className="flex i>tems-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-black bg-white-600 hover:bg-white-700 sm:px-8">
+                            <button onClick={()=>openSignIn()}className="flex i>tems-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-black bg-white-600 hover:bg-white-700 sm:px-8">
                                 Sign In
                             </button>
                         </div>
