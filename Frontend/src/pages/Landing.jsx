@@ -9,13 +9,19 @@ import { features, pricingPlans, testimonials } from "../assets/data";
 import FooterSection from "../components/landing/FooterSection";
 import { useClerk, useUser } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Landing =() =>{
     const {openSignIn,openSignUp}=useClerk();
     const {isSignedIn}=useUser();
     const navigate= useNavigate();
 
-        
+        useEffect(()=>{
+             if(isSignedIn){
+                navigate("/dashboard");
+             }
+        },[isSignedIn,navigate]);
+
     return(
         <div className="landing-page bg-gradient-to-b from-gary-50 to-gray-100">  
          {/*hero section*/}
@@ -23,11 +29,11 @@ const Landing =() =>{
          {/*features section*/}
          <FeaturesSection features={features}/>
          {/*pricing section*/}
-         <PricingSection pricingPlans={pricingPlans}/>
+         <PricingSection pricingPlans={pricingPlans} openSignUp={openSignUp}/>
          {/*Testimonial section*/}
          <TestimonialsSection testimonials={testimonials}/>
          {/*CTA section*/}
-         <CTASection/>
+         <CTASection openSignUp={openSignUp}/>
          {/*Footer*/}
           <FooterSection/>
         </div>
